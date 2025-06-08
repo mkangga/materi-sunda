@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="su">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diajar Basa Sunda - Kelas 10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: The application is designed as a central dashboard leading to themed sections. This non-linear, hub-and-spoke model was chosen over a simple document scroll to empower student choice and make the large volume of text feel more manageable and app-like. The user starts at a main menu (dashboard), selects a major theme (e.g., 'Sastra Heubeul', 'Inohong Sunda'), and is taken to a dedicated, interactive view for that theme. Within each view, sub-navigation (tabs) further organizes content, allowing for focused exploration. A persistent 'Home' button ensures easy return to the main dashboard, creating a clear and intuitive user flow that prioritizes exploration over linear consumption. -->
+    <!-- Visualization & Content Choices: Given the report is entirely text-based, traditional data charts are not applicable. Instead, 'visualization' is achieved through information architecture and interactive layouts. Key choices include: 1) Dashboard Cards (Goal: Organize/Navigate): Clickable cards with icons (Unicode) to visually represent sections. Interaction: JS-driven view switching. 2) Tabbed Content (Goal: Organize): JS-powered tabs to break down long sections (like 'Dongéng') into smaller, digestible pieces, preventing overwhelming the user. 3) Infographic-style Diagram (Goal: Inform/Relate): For the 'Silih Asih, Asah, Asuh' philosophy, a Tailwind CSS grid creates a three-column visual diagram, using icons and text to explain the relationship between concepts without using any graphics files. Library/Method: Vanilla JS for all interactions, Tailwind CSS for all layouts. This approach best serves the content's nature. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFCFB;
+            color: #44403C;
+        }
+        .content-section {
+            display: none;
+        }
+        .tab-button.active {
+            border-color: #0D9488;
+            background-color: #F0FDFA;
+            color: #134E4A;
+            font-weight: 600;
+        }
+        .card-hover {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app-container" class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <header class="text-center mb-10">
+            <h1 class="text-4xl sm:text-5xl font-bold text-teal-800 mb-2">Diajar Basa Sunda</h1>
+            <p class="text-lg text-stone-600">Kumpulan Materi Bacaan pikeun Murid Kelas 10</p>
+        </header>
+
+        <main id="dashboard" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div onclick="showContent('sastra-heubeul')" class="card-hover cursor-pointer p-6 bg-white rounded-xl border border-stone-200 shadow-sm">
+                <div class="flex items-center space-x-4">
+                    <div class="text-4xl">🏰</div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-teal-700">Sastra Heubeul</h2>
+                        <p class="text-stone-500">Babad, Sasakala, & Dongéng</p>
+                    </div>
+                </div>
+            </div>
+            <div onclick="showContent('sastra-moderen')" class="card-hover cursor-pointer p-6 bg-white rounded-xl border border-stone-200 shadow-sm">
+                <div class="flex items-center space-x-4">
+                    <div class="text-4xl">✍️</div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-teal-700">Sastra Modéren</h2>
+                        <p class="text-stone-500">Carpon & Sajak</p>
+                    </div>
+                </div>
+            </div>
+             <div onclick="showContent('inohong-sunda')" class="card-hover cursor-pointer p-6 bg-white rounded-xl border border-stone-200 shadow-sm">
+                <div class="flex items-center space-x-4">
+                    <div class="text-4xl">👤</div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-teal-700">Inohong Sunda</h2>
+                        <p class="text-stone-500">Biografi Tokoh Inspiratif</p>
+                    </div>
+                </div>
+            </div>
+            <div onclick="showContent('ajen-budaya')" class="card-hover cursor-pointer p-6 bg-white rounded-xl border border-stone-200 shadow-sm md:col-span-2 lg:col-span-3">
+                 <div class="flex items-center space-x-4">
+                    <div class="text-4xl">🤝</div>
+                    <div>
+                        <h2 class="text-xl font-semibold text-teal-700">Ajén Budaya Sunda</h2>
+                        <p class="text-stone-500">Falsafah, Kaulinan, & Kasenian</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div id="content-viewer">
+            
+            <!-- Bagian Sastra Heubeul -->
+            <section id="sastra-heubeul" class="content-section">
+                <button onclick="showContent(null)" class="mb-6 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition">← Balik deui</button>
+                <h2 class="text-3xl font-bold text-center mb-8 text-teal-800">Sastra Heubeul</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="border-b border-stone-200 mb-4">
+                        <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                            <button onclick="showTab('sastra-heubeul', 'babad')" class="tab-button whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300 active">Babad & Sasakala</button>
+                            <button onclick="showTab('sastra-heubeul', 'dongeng')" class="tab-button whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300">Dongéng</button>
+                        </nav>
+                    </div>
+
+                    <div id="sastra-heubeul-babad" class="tab-content space-y-6">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Babad Pajajaran (Ringkesan)</h3>
+                            <p class="text-stone-600 leading-relaxed">Kacaturkeun Karajaan Pajajaran ngadeg gagah di tatar Sunda, kalayan rajana anu mashur kakoncara, Prabu Siliwangi. Anjeunna katelah raja anu wijaksana, adil palamarta, tur dipikacinta ku rahayatna. Dina mangsa pamaréntahanana, Pajajaran ngalaman jaman kaemasan. Tatanén subur makmur, rahayat hirup tengtrem ayem. Prabu Siliwangi ngahijikeun rupa-rupa golongan masarakat sarta ngajungjung luhur ajén-inajén kamanusaan. Warisanana jadi inspirasi ngeunaan kapamingpinan anu idéal.</p>
+                        </article>
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Babad Cirebon (Ringkesan)</h3>
+                            <p class="text-stone-600 leading-relaxed">Dimimitian ku lalampahan Pangeran Cakrabuana, putra Prabu Siliwangi, anu ngababakan leuweung di wewengkon basisir. Tuluy datang putuna, Sunan Gunung Jati, anu nyebarkeun Islam jeung ngawangun Cirebon jadi karajaan anu kuat. Ngadegna Karajaan Cirebon némbongkeun kumaha Cirebon jadi tempat patepungna rupa-rupa budaya anu silih lengkepan, ngajarkeun pentingna kapamingpinan visioner jeung toleransi.</p>
+                        </article>
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Sasakala Situ Bagendit</h3>
+                            <p class="text-stone-600 leading-relaxed">Baheula, aya hiji randa beunghar ngaranna Nyi Endit anu pohara korétna. Hiji poé, datang aki-aki ménta cai tapi kalah diusir. Saméméh indit, aki-aki nancebkeun iteukna. Barang dicabut, bijil cai anu terus ngagedéan nepi ka ngeueum sakabéh lembur jeung harta Nyi Endit. Lembur éta jadi situ anu katelah Situ Bagendit. Ieu sasakala jadi pangéling-ngéling yén kakayaan téh kudu dibarengan ku kedermawanan.</p>
+                        </article>
+                    </div>
+
+                    <div id="sastra-heubeul-dongeng" class="tab-content hidden space-y-6">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Lutung Kasarung</h3>
+                            <p class="text-stone-600 leading-relaxed">Carita Purbasari, putri bageur anu dipiceun ka leuweung ku lanceukna nu sirikan, Purbararang. Di leuweung, Purbasari sosobatan jeung Lutung Kasarung, hiji lutung anu sabenerna pangeran kasép nu dikutuk. Ahirna, Purbasari cageur tina panyakit anéh sarta kabuktian yén Lutung Kasarung téh leuwih unggul tibatan tunangan Purbararang. Dongéng ieu ngajarkeun yén kahadéan haté leuwih utama batan rupa, sarta kasabaran bakal mawa kabagjaan.</p>
+                        </article>
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Si Kabayan Ngala Nangka</h3>
+                            <p class="text-stone-600 leading-relaxed">Si Kabayan dititah ngala nangka ku mitohana. Kusabab ngarasa beurat, manéhna boga akal sangkan nangkana balik sorangan. Nangkana dipalidkeun di walungan, tapi ahirna kapanggih ku tatanggana. Si Kabayan, sanajan katingalina boloho, caritana sering ngandung sindir sampir kana kahirupan sapopoé.</p>
+                        </article>
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Peucang Keuna ku Leugeut</h3>
+                            <p class="text-stone-600 leading-relaxed">Peucang anu pinter tapi sombong resep malingan bonténg Pa Tani. Pikeun néwakna, Pa Tani nyieun jajalmaan nu dibaluran ku leugeut (lem). Peucang nu keuheul najongan jajalmaan éta nepi ka awakna rapet kabéh. Ahirna, Peucang bisa ditéwak. Dongéng ieu ngajarkeun yén kapinteran nu dibarengan kasombongan bisa nyilakakeun diri sorangan.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bagian Sastra Moderen -->
+            <section id="sastra-moderen" class="content-section">
+                <button onclick="showContent(null)" class="mb-6 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition">← Balik deui</button>
+                <h2 class="text-3xl font-bold text-center mb-8 text-teal-800">Sastra Modéren</h2>
+                 <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="border-b border-stone-200 mb-4">
+                        <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+                            <button onclick="showTab('sastra-moderen', 'carpon')" class="tab-button whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300 active">Carita Pondok (Carpon)</button>
+                            <button onclick="showTab('sastra-moderen', 'sajak')" class="tab-button whitespace-nowrap py-3 px-1 border-b-2 font-medium text-sm border-transparent text-stone-500 hover:text-stone-700 hover:border-stone-300">Sajak</button>
+                        </nav>
+                    </div>
+
+                    <div id="sastra-moderen-carpon" class="tab-content space-y-6">
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">“Nulungan Aki-aki”</h3>
+                            <p class="text-stone-600 leading-relaxed">Asep jeung Udin, dua sobat, manggihan aki-aki katindih sapédah. Sanajan Udin ngajak buru-buru ka sakola, Asep keukeuh nulungan. Maranéhna ngabantuan nganteurkeun béas si aki. Carita ieu ngajarkeun pentingna rasa karunya jeung daék nulungan batur sanajan dina kaayaan nu teu nguntungkeun.</p>
+                        </article>
+                         <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">“Liburan ka Kebon Binatang”</h3>
+                            <p class="text-stone-600 leading-relaxed">Carita pangalaman pribadi liburan ka Kebon Binatang Gembira Loka. Si pangarang ngagambarkeun kabungahna ningali rupa-rupa sato, ti mimiti lauk, buaya, nepi ka badak. Pangalaman anu paling pikaresepeun nyaéta nalika masihan dahar ka uncal anu lindeuk. Ieu carpon némbongkeun yén liburan bisa jadi sarana hiburan sakaligus nambahan pangaweruh.</p>
+                        </article>
+                        <article>
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">“Tilu Gantung Basa Sora”</h3>
+                            <p class="text-stone-600 leading-relaxed">Kisah cinta rumaja antara Dini jeung Rizal di Ciwidey. Cintana diuji ku jarak nalika Rizal kudu indit ngudag impianana. Carita ieu ngagambarkeun kakuatan cinta jeung kapercayaan dina nyanghareupan cocoba jarak jeung waktu.</p>
+                        </article>
+                    </div>
+
+                    <div id="sastra-moderen-sajak" class="tab-content hidden space-y-8">
+                        <article class="text-center">
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Pahlawan Toha</h3>
+                            <p class="text-lg font-semibold text-stone-500 mb-4">Karya: Apip Mustopa</p>
+                            <div class="text-stone-700 italic leading-loose">
+                                <p>Toha</p>
+                                <p>Pahlawan Bandung Selatan</p>
+                                <p>Anjeun pahlawan</p>
+                                <p>Sumangerd di medan perang</p>
+                                <p>Getih anjeun nyiram bumi</p>
+                                <p>Ngaran anjeun seungit</p>
+                                <p>Nafas anjeun janten wirid</p>
+                            </div>
+                        </article>
+                        <article class="text-center">
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Peuting</h3>
+                            <p class="text-lg font-semibold text-stone-500 mb-4">Karya: Ajip Rosidi</p>
+                            <div class="text-stone-700 italic leading-loose">
+                                <p>Dina hiji peuting urang jalan-jalan nyorangan</p>
+                                <p>Kadua bulan</p>
+                                <p>Dina hiji peuting taya saurang nu jalan-jalan</p>
+                                <p>Ngan kari bulan</p>
+                            </div>
+                             <p class="mt-4 text-sm text-stone-600">Sajak ieu ngawangun suasana peuting anu béda, antara kabersamaan jeung kasorangan, kalayan bulan salaku saksi.</p>
+                        </article>
+                         <article class="text-center">
+                            <h3 class="text-2xl font-semibold mb-2 text-teal-700">Lagu Paturay</h3>
+                            <p class="text-lg font-semibold text-stone-500 mb-4">Karya: Surachman R.M.</p>
+                            <div class="text-stone-700 italic leading-loose">
+                                <p>Sora nyawa kari sakesetan napas biola</p>
+                                <p>Ngeleperkeun lagu lumayung hideung</p>
+                                <p>Tengtrem temen anjeun nyangsaya, enung</p>
+                                <p>Luang ka tukang ngulahek nembongan lila</p>
+                                <p>Sakesetan duh sakesetan ti dinya sirna</p>
+                                <p>Mutiara kuring tina watangna</p>
+                            </div>
+                            <p class="mt-4 text-sm text-stone-600">Ngagambarkeun rasa kasedih anu jero ngeunaan pipisahan, ngagunakeun sora biola pikeun nguatkeun suasana.</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bagian Inohong Sunda -->
+            <section id="inohong-sunda" class="content-section">
+                <button onclick="showContent(null)" class="mb-6 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition">← Balik deui</button>
+                <h2 class="text-3xl font-bold text-center mb-8 text-teal-800">Raratan Inohong Sunda</h2>
+                <div class="space-y-8">
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                        <h3 class="text-2xl font-semibold mb-2 text-teal-700">Radén Déwi Sartika</h3>
+                        <p class="text-stone-500 font-medium mb-4">Pajuang Atikan pikeun Wanoja (1884 - 1947)</p>
+                        <p class="text-stone-600 leading-relaxed">Radén Déwi Sartika nyaéta pahlawan nasional anu lahir di Bandung. Sanajan dina mangsa harita wanoja diwatesan, anjeunna keukeuh hayang sakola. Ti leuleutik, anjeunna geus némbongkeun sumanget ngajar ku ulin guru-guruan. Dina 16 Januari 1904, anjeunna junun ngadegkeun Sakola Istri di Bandung, anu tuluy jadi Sakola Kautamaan Istri. Perjuanganana dina widang atikan pikeun kaum wanoja jadi inspirasi yén atikan téh hak pikeun sakabéh jalma.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-md">
+                         <h3 class="text-2xl font-semibold mb-2 text-teal-700">Otto Iskandar Dinata</h3>
+                        <p class="text-stone-500 font-medium mb-4">Si Jalak Harupat (1897 - 1945)</p>
+                        <p class="text-stone-600 leading-relaxed">Otto Iskandar Dinata, anu katelah Si Jalak Harupat, nyaéta pahlawan nasional anu kawentar ku kawani jeung kategegesanana. Anjeunna aktif di Budi Utomo jeung Paguyuban Pasundan. Salaku anggota Volksraad, anjeunna wani ngiritik kawijakan kolonial Walanda. Dina mangsa kamerdékaan, anjeunna jadi anggota BPUPKI jeung PPKI, sarta ngusulkeun Soekarno-Hatta jadi Présidén jeung Wakil Présidén. Otto mangrupa conto pajoang anu teuneung ludeung pikeun kamerdékaan bangsana.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bagian Ajén Budaya -->
+            <section id="ajen-budaya" class="content-section">
+                <button onclick="showContent(null)" class="mb-6 bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition">← Balik deui</button>
+                <h2 class="text-3xl font-bold text-center mb-8 text-teal-800">Beungkeutan Ajén Budaya Sunda</h2>
+                <div class="bg-white p-6 rounded-xl shadow-md space-y-10">
+                    <article>
+                        <h3 class="text-2xl font-semibold text-center mb-4 text-teal-700">Falsafah Hirup Urang Sunda</h3>
+                        <div class="grid md:grid-cols-3 gap-6 text-center">
+                            <div class="p-4 bg-teal-50 rounded-lg">
+                                <div class="text-4xl mb-2">❤️</div>
+                                <h4 class="text-xl font-bold text-teal-800">Silih Asih</h4>
+                                <p class="text-stone-600">Silih pikanyaah, hargaan, jeung tulungan. Jadi dadasar pikeun ngawangun hubungan anu hadé jeung ngajauhkeun rasa mumusuhan.</p>
+                            </div>
+                             <div class="p-4 bg-teal-50 rounded-lg">
+                                <div class="text-4xl mb-2">🧠</div>
+                                <h4 class="text-xl font-bold text-teal-800">Silih Asah</h4>
+                                <p class="text-stone-600">Silih ngasah pangaweruh, papatahan, jeung élingan kana kahadéan. Ngadorong sumanget pikeun babarengan maju.</p>
+                            </div>
+                             <div class="p-4 bg-teal-50 rounded-lg">
+                                <div class="text-4xl mb-2">🤗</div>
+                                <h4 class="text-xl font-bold text-teal-800">Silih Asuh</h4>
+                                <p class="text-stone-600">Silih jaga, bimbing, jeungaping. Ngandung tanggung jawab pikeun ngadidik generasi saterusna jadi jalma anu bener.</p>
+                            </div>
+                        </div>
+                    </article>
+                    <article>
+                        <h3 class="text-2xl font-semibold text-center mb-4 text-teal-700">Kaulinan Barudak Baheula</h3>
+                        <p class="text-stone-600 leading-relaxed text-center max-w-3xl mx-auto">Jaman baheula, kaulinan barudak saperti <strong>oray-orayan, cing ciripit, jeung galah asin</strong> lain ukur hiburan. Kaulinan ieu téh ngandung ajén atikan penting: ngalatih gerak awak (olahraga), ngajarkeun kakompakan, kapamingpinan, kajujuran, jeung sportivitas. Beda jeung gim dina hapé, kaulinan tradisional ngawangun karakter jeung sosialisasi barudak sacara langsung.</p>
+                    </article>
+                     <article>
+                        <h3 class="text-2xl font-semibold text-center mb-4 text-teal-700">Angklung: Sora Harmoni ti Tatar Sunda</h3>
+                        <p class="text-stone-600 leading-relaxed text-center max-w-3xl mx-auto">Angklung, alat musik tina awi, geus diaku ku UNESCO salaku Warisan Budaya Dunia. Leuwih ti saukur alat musik, angklung ngandung falsafah hirup. Hiji angklung ngan ngahasilkeun hiji nada, jadi pikeun nyieun mélodi éndah, dibutuhkeun gawé bareng jeung kakompakan. Ieu ngalambangkeun prinsip gotong royong jeung sauyunan dina budaya Sunda.</p>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dashboard = document.getElementById('dashboard');
+            const contentSections = document.querySelectorAll('.content-section');
+            const appContainer = document.getElementById('app-container');
+
+            window.showContent = function(sectionId) {
+                dashboard.style.display = 'none';
+                contentSections.forEach(section => {
+                    section.style.display = 'none';
+                });
+
+                if (sectionId) {
+                    const activeSection = document.getElementById(sectionId);
+                    if (activeSection) {
+                        activeSection.style.display = 'block';
+                    }
+                } else {
+                    dashboard.style.display = 'grid';
+                }
+                appContainer.scrollIntoView({ behavior: 'smooth' });
+            };
+
+            window.showTab = function(sectionId, tabId) {
+                const section = document.getElementById(sectionId);
+                const tabButtons = section.querySelectorAll('.tab-button');
+                const tabContents = section.querySelectorAll('.tab-content');
+
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                
+                tabContents.forEach(content => {
+                    content.style.display = 'none';
+                });
+
+                const buttonToShow = section.querySelector(`button[onclick="showTab('${sectionId}', '${tabId}')"]`);
+                const contentToShow = document.getElementById(`${sectionId}-${tabId}`);
+                
+                if (buttonToShow) {
+                    buttonToShow.classList.add('active');
+                }
+                if (contentToShow) {
+                    contentToShow.style.display = 'block';
+                }
+            };
+            
+            showTab('sastra-heubeul', 'babad');
+            showTab('sastra-moderen', 'carpon');
+        });
+    </script>
+</body>
+</html>
