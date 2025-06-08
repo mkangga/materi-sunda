@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Diajar Interaktif: Basa Sunda SMA</title>
+    <title>Aplikasi Diajar Interaktif: Basa Sunda SMA (Lengkep)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Warm Neutrals & Earthy Tones -->
-    <!-- Application Structure Plan: The SPA uses a modular, non-linear design. A persistent navigation bar allows users to jump directly to any topic (Carpon, Sajak, Guguritan, Undak Usuk, Warta), making it ideal for study and review. This structure is more user-friendly than a simple linear scroll. Key concepts are presented in interactive formats: 'Guguritan' features a pupuh selector with a dynamic Chart.js visualization for guru wilangan, turning abstract rules into a tangible graphic. 'Undak Usuk Basa' uses a tabbed interface for direct comparison. This user-centric design prioritizes exploration and active learning over passive reading. -->
+    <!-- Application Structure Plan: The SPA uses a modular, non-linear design. A persistent navigation bar allows users to jump directly to any topic (Carpon, Sajak, Guguritan, Undak Usuk, Warta, Pakeman Basa), making it ideal for study and review. This structure is more user-friendly than a simple linear scroll. Key concepts are presented in interactive formats: 'Guguritan' features a pupuh selector with a dynamic Chart.js visualization for guru wilangan, turning abstract rules into a tangible graphic. 'Undak Usuk Basa' uses a tabbed interface for direct comparison. 'Carpon' now includes a sample text with direct analysis. A new 'Pakeman Basa' section is added for completeness. This user-centric design prioritizes exploration and active learning over passive reading. -->
     <!-- Visualization & Content Choices: 
         - Report Info: 17 Pupuh with rules (guru wilangan, guru lagu) and watek. -> Goal: Compare & Inform. -> Viz/Presentation: Dropdown selector + Dynamic Bar Chart (Chart.js) for Guru Wilangan + Text display for details. -> Interaction: Selecting a pupuh from the dropdown instantly updates the chart and text info. -> Justification: Transforms a dense, static table into an engaging, exploratory tool, making complex poetic structures easy to visualize and compare.
-        - Report Info: Comparison of Basa Loma and Basa Lemes. -> Goal: Compare & Explain. -> Viz/Presentation: Tabbed interface with two-column tables. -> Interaction: Clicking tabs to switch between word comparisons and conversation examples. -> Justification: Directly juxtaposes the language levels for clear, side-by-side understanding.
-        - Report Info: Intrinsic elements of Carpon. -> Goal: Organize & Inform. -> Viz/Presentation: Styled HTML cards. -> Interaction: Static display. -> Justification: Breaks down literary theory into visually distinct, digestible blocks of information.
-        - Report Info: Fact vs. Opinion in News. -> Goal: Differentiate & Analyze. -> Viz/Presentation: Styled lists with interactive buttons. -> Interaction: Clicking a button to reveal whether a statement is a fact or opinion. -> Justification: An active learning exercise that reinforces critical thinking skills.
+        - Report Info: Comparison of Basa Loma and Basa Lemes. -> Goal: Compare & Explain. -> Viz/Presentation: Expanded table and conversation examples in a tabbed interface. -> Interaction: Clicking tabs to switch between word comparisons and conversation examples. -> Justification: Directly juxtaposes the language levels for clear, side-by-side understanding.
+        - Report Info: Intrinsic elements of Carpon. -> Goal: Organize & Apply. -> Viz/Presentation: Styled HTML cards for theory + a sample carpon with a detailed breakdown analysis. -> Interaction: Static display. -> Justification: Connects theory directly to practice, enhancing comprehension.
+        - Report Info: News analysis (Fact vs. Opinion, 5W+1H). -> Goal: Differentiate & Analyze. -> Viz/Presentation: Explanation of 5W+1H applied to sample text, followed by an interactive fact/opinion quiz. -> Interaction: Clicking a button to reveal whether a statement is a fact or opinion. -> Justification: Provides a foundational news analysis framework before testing critical thinking skills.
+        - Report Info: Sundanese Idioms. -> Goal: Inform & Explain. -> Viz/Presentation: A new dedicated section explaining 'Pakeman Basa' with a table of examples (babasan & paribasa), their meanings, and usage. -> Interaction: Static display. -> Justification: Adds a crucial and culturally rich topic to make the learning application more comprehensive.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -69,7 +70,7 @@
 
         <header class="text-center py-16">
             <h1 class="text-4xl md:text-5xl font-bold text-[#2C2C2C] tracking-tight">Pangajaran Basa Sunda Interaktif</h1>
-            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#5A5A5A]">Wilujeng sumping! Aplikasi ieu dirarancang pikeun ngabantos hidep diajar materi Basa Sunda kelas 10 SMA kalawan cara anu langkung pikaresepeun.</p>
+            <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#5A5A5A]">Wilujeng sumping! Aplikasi ieu dirarancang pikeun ngabantos hidep diajar materi Basa Sunda kelas 10 SMA kalawan cara anu langkung lengkep sareng pikaresepeun.</p>
         </header>
 
         <nav class="sticky top-0 z-10 bg-[#FBF9F6]/80 backdrop-blur-md mb-12 rounded-xl shadow-md">
@@ -79,6 +80,7 @@
                 <a href="#guguritan" data-section="guguritan" class="nav-link text-sm md:text-base font-semibold px-4 py-2 rounded-lg hover:bg-gray-200">Guguritan</a>
                 <a href="#undakusuk" data-section="undakusuk" class="nav-link text-sm md:text-base font-semibold px-4 py-2 rounded-lg hover:bg-gray-200">Undak Usuk Basa</a>
                 <a href="#warta" data-section="warta" class="nav-link text-sm md:text-base font-semibold px-4 py-2 rounded-lg hover:bg-gray-200">Téks Informasi</a>
+                <a href="#pakeman" data-section="pakeman" class="nav-link text-sm md:text-base font-semibold px-4 py-2 rounded-lg hover:bg-gray-200">Pakeman Basa</a>
             </div>
         </nav>
 
@@ -98,32 +100,32 @@
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2C2C2C]">Mikaweruh Carita Pondok (Carpon)</h2>
                     <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Carpon nyaéta carita rékaan (fiksi) anu pondok. Hayu urang pedar unsur-unsur anu ngawangun hiji carpon sangkan urang bisa maham eusi jeung ajénna kalawan gembleng.</p>
                 </div>
-                <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <h3 class="text-2xl font-bold text-[#A98A71] mb-6 text-center">Unsur-unsur Intrinsik Carpon</h3>
-                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]">
-                            <h4 class="font-bold text-lg">Téma (Jejer)</h4>
-                            <p class="text-[#5A5A5A]">Gagasan poko atawa inti pasualan anu jadi dadasar carita.</p>
+                <div class="bg-white p-8 rounded-2xl shadow-lg space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold text-[#A98A71] mb-6 text-center">Unsur-unsur Intrinsik Carpon</h3>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]"><h4 class="font-bold text-lg">Téma (Jejer)</h4><p class="text-[#5A5A5A]">Gagasan poko atawa inti pasualan anu jadi dadasar carita.</p></div>
+                            <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]"><h4 class="font-bold text-lg">Palaku jeung Watekna</h4><p class="text-[#5A5A5A]">Jalma-jalma anu ngalakon dina carita katut karakter atawa pasipatanana.</p></div>
+                            <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]"><h4 class="font-bold text-lg">Latar (Setting)</h4><p class="text-[#5A5A5A]">Tempat, waktu, jeung suasana lumangsungna kajadian dina carita.</p></div>
+                            <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]"><h4 class="font-bold text-lg">Galur (Alur/Plot)</h4><p class="text-[#5A5A5A]">Runtuyan kajadian anu ngawangun carita, bisa maju, mundur, atawa campuran.</p></div>
+                            <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]"><h4 class="font-bold text-lg">Puseur Sawangan</h4><p class="text-[#5A5A5A]">Cara pangarang nempatkeun dirina dina carita (jalma kahiji atawa katilu).</p></div>
+                            <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]"><h4 class="font-bold text-lg">Amanat</h4><p class="text-[#5A5A5A]">Pesen atawa ajaran moral anu hayang ditepikeun ku pangarang ka nu maca.</p></div>
                         </div>
-                        <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]">
-                            <h4 class="font-bold text-lg">Palaku jeung Watekna</h4>
-                            <p class="text-[#5A5A5A]">Jalma-jalma anu ngalakon dina carita katut karakter atawa pasipatanana.</p>
+                    </div>
+                    <div class="border-t pt-8">
+                        <h3 class="text-2xl font-bold text-[#A98A71] mb-4 text-center">Conto Analisis Carpon</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
+                             <h4 class="font-bold text-xl mb-2 text-center">Tukang Korang</h4>
+                             <p class="italic text-center text-sm mb-4">Karya: G.S.</p>
+                             <p class="text-[#3D3D3D]">"Geus dua poé Udin teu sakola. Lain teu hayang, tapi éra ku babaturanana. Baju seragamna geus butut, sapatuna geus copong. Manéhna inget omongan bapana, 'Jang, hampura Bapa can bisa meulikeun baju anyar. Keur dahar gé hésé.' Ti harita, unggal balik ti masantren, Udin sok mantuan bapana jadi tukang korang di walungan. Manéhna miharep, tina hasil ngala keusik, bisa meuli baju seragam sorangan."</p>
                         </div>
-                        <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]">
-                            <h4 class="font-bold text-lg">Latar (Setting)</h4>
-                            <p class="text-[#5A5A5A]">Tempat, waktu, jeung suasana lumangsungna kajadian dina carita.</p>
-                        </div>
-                        <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]">
-                            <h4 class="font-bold text-lg">Galur (Alur/Plot)</h4>
-                            <p class="text-[#5A5A5A]">Runtuyan kajadian anu ngawangun carita, bisa maju, mundur, atawa campuran.</p>
-                        </div>
-                        <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]">
-                            <h4 class="font-bold text-lg">Puseur Sawangan</h4>
-                            <p class="text-[#5A5A5A]">Cara pangarang nempatkeun dirina dina carita (jalma kahiji atawa katilu).</p>
-                        </div>
-                        <div class="border border-gray-200 p-4 rounded-lg bg-[#FBF9F6]">
-                            <h4 class="font-bold text-lg">Amanat</h4>
-                            <p class="text-[#5A5A5A]">Pesen atawa ajaran moral anu hayang ditepikeun ku pangarang ka nu maca.</p>
+                        <div class="space-y-4">
+                            <p><span class="font-bold">Téma:</span> Kahirupan kulawarga basajan jeung sumanget pikeun sakola.</p>
+                            <p><span class="font-bold">Palaku:</span> Udin (budak rajin, getol, nyaah ka kolot), Bapana (boga rasa tanggung jawab, tapi kaayaan ékonomina kurang).</p>
+                            <p><span class="font-bold">Latar:</span> Di imah, di sakola, di walungan. Suasana prihatin tapi pinuh ku harepan.</p>
+                            <p><span class="font-bold">Galur:</span> Maju (merélé), nyaritakeun kajadian sacara runtut.</p>
+                            <p><span class="font-bold">Puseur Sawangan:</span> Jalma katilu (pangarang nyaritakeun tokoh 'Udin').</p>
+                            <p><span class="font-bold">Amanat:</span> Urang kudu getol diajar sanajan dina kaayaan serba kakurangan, sarta kudu daék mantuan kolot.</p>
                         </div>
                     </div>
                 </div>
@@ -133,7 +135,7 @@
             <section id="sajak" class="content-section py-12">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2C2C2C]">Ngajajah Dunya Sajak Sunda</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Sajak Sunda nyaéta wangun puisi anu teu pati kauger ku aturan formal. Sajak jadi média pikeun ngébréhkeun rasa, pikiran, jeung gagasan panyajak.</p>
+                    <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Sajak Sunda nyaéta wangun puisi anu teu pati kauger ku aturan formal. Sajak jadi média pikeun ngébréhkeun rasa, pikiran, jeung gagasan panyajak ngaliwatan pilihan kecap anu éndah.</p>
                 </div>
                 <div class="grid md:grid-cols-2 gap-8">
                     <div class="bg-white p-8 rounded-2xl shadow-lg">
@@ -154,18 +156,10 @@
                     <div class="bg-white p-8 rounded-2xl shadow-lg">
                         <h3 class="text-2xl font-bold text-center mb-4 text-[#A98A71]">Pedaran Sajak</h3>
                          <div class="space-y-4">
-                            <div>
-                                <h4 class="font-bold text-lg">Téma:</h4>
-                                <p class="text-[#5A5A5A]">Cinta ka lemah cai, kaéndahan alam tatar Sunda.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Rasa:</h4>
-                                <p class="text-[#5A5A5A]">Rasa cinta, reueus, jeung tengtrem kana kaayaan di tanah Sunda.</p>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-lg">Amanat:</h4>
-                                <p class="text-[#5A5A5A]">Urang kudu micinta jeung ngajaga lemah cai, tempat urang cicing anu éndah tur matak betah.</p>
-                            </div>
+                            <div><h4 class="font-bold text-lg">Téma:</h4><p class="text-[#5A5A5A]">Cinta ka lemah cai, kaéndahan alam tatar Sunda.</p></div>
+                            <div><h4 class="font-bold text-lg">Rasa:</h4><p class="text-[#5A5A5A]">Rasa cinta, reueus, jeung tengtrem kana kaayaan di tanah Sunda.</p></div>
+                            <div><h4 class="font-bold text-lg">Gaya Basa:</h4><p class="text-[#5A5A5A]">"Langit na haté kuring" ngagunakeun gaya basa métafora, ngabandingkeun langit (lambang kaendahan/kaluginaan) jeung eusi haté.</p></div>
+                            <div><h4 class="font-bold text-lg">Amanat:</h4><p class="text-[#5A5A5A]">Urang kudu micinta jeung ngajaga lemah cai, tempat urang cicing anu éndah tur matak betah.</p></div>
                         </div>
                     </div>
                 </div>
@@ -178,29 +172,10 @@
                     <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Guguritan nyaéta puisi tradisional anu kaiket ku aturan pupuh. Unggal pupuh miboga aturan guru wilangan, guru lagu, jeung watek (karakter) anu béda-béda. Hayu urang guar hiji-hiji!</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <div class="max-w-md mx-auto mb-8">
-                        <label for="pupuhSelector" class="block mb-2 font-semibold text-[#5A5A5A]">Pilih Pupuh:</label>
-                        <select id="pupuhSelector" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#A98A71] focus:border-[#A98A71]">
-                        </select>
-                    </div>
+                    <div class="max-w-md mx-auto mb-8"><label for="pupuhSelector" class="block mb-2 font-semibold text-[#5A5A5A]">Pilih Pupuh:</label><select id="pupuhSelector" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#A98A71] focus:border-[#A98A71]"></select></div>
                     <div class="grid md:grid-cols-2 gap-8 items-start">
-                        <div id="pupuhInfo" class="space-y-4">
-                            <h3 id="pupuhName" class="text-2xl font-bold text-[#A98A71]"></h3>
-                            <div>
-                                <h4 class="font-bold text-lg">Watek:</h4>
-                                <p id="pupuhWatek" class="text-[#5A5A5A]"></p>
-                            </div>
-                             <div>
-                                <h4 class="font-bold text-lg">Aturan:</h4>
-                                <p id="pupuhAturan" class="text-[#5A5A5A] font-mono"></p>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="chart-container">
-                                <canvas id="pupuhChart"></canvas>
-                            </div>
-                             <p class="text-center text-sm text-gray-500 mt-2">Visualisasi Guru Wilangan (jumlah engang per padalisan)</p>
-                        </div>
+                        <div id="pupuhInfo" class="space-y-4"><h3 id="pupuhName" class="text-2xl font-bold text-[#A98A71]"></h3><div><h4 class="font-bold text-lg">Watek:</h4><p id="pupuhWatek" class="text-[#5A5A5A]"></p></div><div><h4 class="font-bold text-lg">Aturan:</h4><p id="pupuhAturan" class="text-[#5A5A5A] font-mono"></p></div></div>
+                        <div><div class="chart-container"><canvas id="pupuhChart"></canvas></div><p class="text-center text-sm text-gray-500 mt-2">Visualisasi Guru Wilangan (jumlah engang per padalisan)</p></div>
                     </div>
                 </div>
             </section>
@@ -212,50 +187,23 @@
                     <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Undak Usuk Basa digunakeun pikeun silihargaan jeung silihhormat. Urang bakal ngabandingkeun ragam Basa Loma (akrab) jeung Basa Lemes (hormat).</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-lg">
-                     <div class="mb-4 border-b border-gray-200">
-                        <nav class="-mb-px flex justify-center space-x-4 md:space-x-8" aria-label="Tabs">
-                            <button class="tab-button active-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg border-[#A98A71] text-[#A98A71]" data-target="kecap">Babandingan Kecap</button>
-                            <button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-target="paguneman">Conto Paguneman</button>
-                        </nav>
-                    </div>
+                     <div class="mb-4 border-b border-gray-200"><nav class="-mb-px flex justify-center space-x-4 md:space-x-8" aria-label="Tabs"><button class="tab-button active-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg border-[#A98A71] text-[#A98A71]" data-target="kecap">Babandingan Kecap</button><button class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-lg border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" data-target="paguneman">Conto Paguneman</button></nav></div>
                     <div id="kecap" class="tab-content active-content">
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left">
-                                <thead>
-                                    <tr class="bg-[#FBF9F6]">
-                                        <th class="p-4 font-semibold">Basa Loma</th>
-                                        <th class="p-4 font-semibold">Basa Lemes (keur Sorangan)</th>
-                                        <th class="p-4 font-semibold">Basa Lemes (keur Batur)</th>
-                                        <th class="p-4 font-semibold">Harti</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="divide-y">
-                                    <tr><td class="p-3">dahar</td><td class="p-3">neda</td><td class="p-3">tuang</td><td class="p-3">makan</td></tr>
-                                    <tr><td class="p-3">saré</td><td class="p-3">kulem</td><td class="p-3">mondok</td><td class="p-3">tidur</td></tr>
-                                    <tr><td class="p-3">indit</td><td class="p-3">mios</td><td class="p-3">angkat</td><td class="p-3">pergi</td></tr>
-                                    <tr><td class="p-3">imah</td><td class="p-3">rorompok</td><td class="p-3">bumi</td><td class="p-3">rumah</td></tr>
-                                    <tr><td class="p-3">gering</td><td class="p-3">udur</td><td class="p-3">teu damang</td><td class="p-3">sakit</td></tr>
-                                    <tr><td class="p-3">ngomong</td><td class="p-3">nyanggem</td><td class="p-3">nyarios</td><td class="p-3">berbicara</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <div class="overflow-x-auto"><table class="w-full text-left"><thead><tr class="bg-[#FBF9F6]"><th class="p-4 font-semibold">Basa Loma</th><th class="p-4 font-semibold">Basa Lemes (keur Sorangan)</th><th class="p-4 font-semibold">Basa Lemes (keur Batur)</th><th class="p-4 font-semibold">Harti</th></tr></thead><tbody class="divide-y">
+                            <tr><td class="p-3">dahar</td><td class="p-3">neda</td><td class="p-3">tuang</td><td class="p-3">makan</td></tr>
+                            <tr><td class="p-3">saré</td><td class="p-3">kulem</td><td class="p-3">mondok</td><td class="p-3">tidur</td></tr>
+                            <tr><td class="p-3">indit</td><td class="p-3">mios</td><td class="p-3">angkat</td><td class="p-3">pergi</td></tr>
+                            <tr><td class="p-3">balik</td><td class="p-3">wangsul</td><td class="p-3">mulih</td><td class="p-3">pulang</td></tr>
+                            <tr><td class="p-3">imah</td><td class="p-3">rorompok</td><td class="p-3">bumi</td><td class="p-3">rumah</td></tr>
+                            <tr><td class="p-3">ngaran</td><td class="p-3">nami</td><td class="p-3">jenengan</td><td class="p-3">nama</td></tr>
+                            <tr><td class="p-3">gering</td><td class="p-3">udur</td><td class="p-3">teu damang</td><td class="p-3">sakit</td></tr>
+                            <tr><td class="p-3">ngomong</td><td class="p-3">nyanggem</td><td class="p-3">nyarios</td><td class="p-3">berbicara</td></tr>
+                        </tbody></table></div>
                     </div>
                     <div id="paguneman" class="tab-content">
                         <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Paguneman Loma (Antar Babaturan)</h4>
-                                <div class="bg-gray-100 p-4 rounded-lg text-[#3D3D3D]">
-                                    <p><span class="font-semibold">Ani:</span> "Din, rék ka mana euy?"</p>
-                                    <p><span class="font-semibold">Udin:</span> "Rék ka imah Asep, rék nginjeum buku."</p>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-xl mb-2">Paguneman Lemes (Murid ka Guru)</h4>
-                                <div class="bg-gray-100 p-4 rounded-lg text-[#3D3D3D]">
-                                    <p><span class="font-semibold">Murid:</span> "Punten, Bapa, badé tumaros."</p>
-                                    <p><span class="font-semibold">Guru:</span> "Mangga, Ujang, badé tumaros naon?"</p>
-                                </div>
-                            </div>
+                            <div><h4 class="font-bold text-xl mb-2">Paguneman Loma (Antar Babaturan)</h4><div class="bg-gray-100 p-4 rounded-lg text-[#3D3D3D]"><p><span class="font-semibold">Ani:</span> "Din, rék ka mana euy? Buru-buru teuing."</p><p><span class="font-semibold">Udin:</span> "Ieu rék ka imah Asep, rék nginjeum buku. Isukan kudu dikumpulkeun."</p><p><span class="font-semibold">Ani:</span> "Oh, hayu atuh urang bareng, imah kuring deukeut ti imah Asep."</p></div></div>
+                            <div><h4 class="font-bold text-xl mb-2">Paguneman Lemes (Murid ka Guru)</h4><div class="bg-gray-100 p-4 rounded-lg text-[#3D3D3D]"><p><span class="font-semibold">Murid:</span> "Punten, Bapa, abdi badé tumaros perkawis pancén kamari."</p><p><span class="font-semibold">Guru:</span> "Mangga, Ujang, badé tumaros naon? Bagian mana anu teu acan kahartos téh?"</p><p><span class="font-semibold">Murid:</span> "Hatur nuhun, Bapa. Bagian analisis watek palaku, Pa."</p></div></div>
                         </div>
                     </div>
                 </div>
@@ -264,17 +212,54 @@
             <!-- Bab 5: Warta -->
             <section id="warta" class="content-section py-12">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#2C2C2C]">Nganalisis Téks Informasi</h2>
-                    <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Téks informasi, saperti warta, eusina dumasar kana kanyataan. Hayu urang diajar ngabédakeun mana nu kaasup fakta jeung mana nu kaasup opini.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2C2C2C]">Nganalisis Téks Informasi (Warta)</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Téks informasi, saperti warta, eusina dumasar kana kanyataan sarta miboga struktur anu jelas. Hayu urang diajar ngabédakeun mana nu kaasup fakta jeung mana nu kaasup opini.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-lg space-y-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-4 text-center">Conto Warta & Analisis 5W+1H</h3>
+                        <div class="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200"><p class="text-[#3D3D3D]">"Popotongan awak jelema mangrupaning sirah, suku, jeung leungeun kapanggih di Kalurahan Merdikorejo, Tempel, Sleman, dinten Rebo (12/7/2023). Pamanggihan ieu dikonfirmasi ku Lurah Merdikorejo, Agus Prasetyo. Numutkeun katerangan, jarak tiap lokasi pamanggihan aya kana 3 kilometer, sarta sadayana kapanggih di sapanjang walungan Krasak. Pihak kapulisian masih kénéh nalungtik motif kajadian ieu, tapi dugaan awal nunjukkeun yén ieu téh mangrupa korban mutilasi."</p></div>
+                        <div class="space-y-2">
+                           <p><span class="font-bold">What (Naon):</span> Pamanggihan popotongan awak jelema.</p>
+                           <p><span class="font-bold">Who (Saha):</span> Warga (nu manggihan), Lurah Agus Prasetyo (nu ngonfirmasi), pihak kapulisian (nu nalungtik).</p>
+                           <p><span class="font-bold">Where (Di mana):</span> Di Kalurahan Merdikorejo, Tempel, Sleman, sapanjang walungan Krasak.</p>
+                           <p><span class="font-bold">When (Iraha):</span> Dinten Rebo, 12 Juli 2023.</p>
+                           <p><span class="font-bold">Why (Kunaon):</span> Motifna masih ditalungtik.</p>
+                           <p><span class="font-bold">How (Kumaha):</span> Popotongan awak kapanggih paburencay di sababaraha lokasi.</p>
+                        </div>
+                    </div>
+                    <div class="border-t pt-8">
+                        <h3 class="text-2xl font-bold mb-4 text-center">Latihan: Fakta atawa Opini?</h3>
+                        <div id="fact-opinion-container" class="space-y-3"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Bab 6: Pakeman Basa -->
+            <section id="pakeman" class="content-section py-12">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2C2C2C]">Néangan Luang tina Pakeman Basa</h2>
+                    <p class="mt-3 max-w-2xl mx-auto text-lg text-[#5A5A5A]">Pakeman basa nyaéta ungkara atawa susunan kecap anu miboga harti husus, lain harti sajalantrahna. Ieu ngawengku babasan jeung paribasa.</p>
                 </div>
                 <div class="bg-white p-8 rounded-2xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-4">Conto Warta</h3>
-                    <div class="bg-gray-50 p-6 rounded-lg mb-6 border border-gray-200">
-                        <p class="text-[#3D3D3D]">"Popotongan awak jelema mangrupaning sirah, suku, jeung leungeun kapanggih di Kalurahan Merdikorejo, Tempel, Sleman. Pamanggihan ieu dikonfirmasi ku Lurah Merdikorejo, Agus Prasetyo. Numutkeun katerangan, jarak tiap lokasi pamanggihan aya kana 3 kilometer, sarta sadayana kapanggih di sapanjang walungan Krasak. Pihak kapulisian masih kénéh nalungtik motif kajadian ieu, tapi dugaan awal nunjukkeun yén ieu téh mangrupa korban mutilasi."</p>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Latihan: Fakta atawa Opini?</h3>
-                    <div id="fact-opinion-container" class="space-y-3">
-                        <!-- Statements will be injected here by JS -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-[#FBF9F6]">
+                                    <th class="p-4 font-semibold">Pakeman Basa</th>
+                                    <th class="p-4 font-semibold">Harti</th>
+                                    <th class="p-4 font-semibold">Jenis</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y">
+                                <tr><td class="p-3 font-semibold">Amis Budi</td><td class="p-3">Hérang panon atawa hadé paroman, pikaresepeun.</td><td class="p-3">Babasan</td></tr>
+                                <tr><td class="p-3 font-semibold">Hampang Birit</td><td class="p-3">Getol, daékan dititah.</td><td class="p-3">Babasan</td></tr>
+                                <tr><td class="p-3 font-semibold">Gedé Hulu</td><td class="p-3">Sombong, adigung.</td><td class="p-3">Babasan</td></tr>
+                                <tr><td class="p-3 font-semibold">Cikaracak ninggang batu, laun-laun jadi legok</td><td class="p-3">Sanajan hésé, lamun terus-terusan diusahakeun mah bakal hasil.</td><td class="p-3">Paribasa</td></tr>
+                                <tr><td class="p-3 font-semibold">Kudu hadé gogog hadé tagog</td><td class="p-3">Kudu hadé basa jeung hadé tingkah laku.</td><td class="p-3">Paribasa</td></tr>
+                                 <tr><td class="p-3 font-semibold">Ulah agul ku payung butut</td><td class="p-3">Ulah sombong ku turunan atawa ku banda titipan.</td><td class="p-3">Paribasa</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </section>
@@ -312,144 +297,90 @@
             const pupuhName = document.getElementById('pupuhName');
             const pupuhWatek = document.getElementById('pupuhWatek');
             const pupuhAturan = document.getElementById('pupuhAturan');
-            const ctx = document.getElementById('pupuhChart').getContext('2d');
-            let pupuhChart;
+            if (pupuhSelector) {
+                const ctx = document.getElementById('pupuhChart').getContext('2d');
+                let pupuhChart;
 
-            function populateSelector() {
-                pupuhData.forEach(p => {
-                    const option = document.createElement('option');
-                    option.value = p.name;
-                    option.textContent = p.name;
-                    pupuhSelector.appendChild(option);
-                });
-            }
-
-            function updatePupuhInfo(name) {
-                const selected = pupuhData.find(p => p.name === name);
-                pupuhName.textContent = selected.name;
-                pupuhWatek.textContent = selected.watek;
-                pupuhAturan.textContent = selected.guru;
-
-                if (pupuhChart) {
-                    pupuhChart.destroy();
+                function populateSelector() {
+                    pupuhData.forEach(p => {
+                        const option = document.createElement('option');
+                        option.value = p.name;
+                        option.textContent = p.name;
+                        pupuhSelector.appendChild(option);
+                    });
                 }
 
-                pupuhChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: selected.wilangan.map((_, i) => `Padalisan ${i + 1}`),
-                        datasets: [{
-                            label: 'Guru Wilangan',
-                            data: selected.wilangan,
-                            backgroundColor: '#A98A71',
-                            borderColor: '#8E6F54',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                display: false
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    title: function(context) {
-                                        return context[0].label;
-                                    },
-                                    label: function (context) {
-                                        return `Jumlah Engang: ${context.raw}`;
-                                    }
-                                }
-                            }
-                        },
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                title: {
-                                    display: true,
-                                    text: 'Jumlah Engang (Suku Kata)'
-                                }
-                            },
-                            x: {
-                                title: {
-                                    display: true,
-                                    text: 'Padalisan (Baris)'
-                                }
-                            }
-                        }
-                    }
-                });
-            }
+                function updatePupuhInfo(name) {
+                    const selected = pupuhData.find(p => p.name === name);
+                    pupuhName.textContent = selected.name;
+                    pupuhWatek.textContent = selected.watek;
+                    pupuhAturan.textContent = selected.guru;
 
-            pupuhSelector.addEventListener('change', (e) => {
-                updatePupuhInfo(e.target.value);
-            });
-            
-            populateSelector();
-            updatePupuhInfo(pupuhData[0].name);
+                    if (pupuhChart) pupuhChart.destroy();
+
+                    pupuhChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: selected.wilangan.map((_, i) => `Padalisan ${i + 1}`),
+                            datasets: [{
+                                label: 'Guru Wilangan', data: selected.wilangan, backgroundColor: '#A98A71', borderColor: '#8E6F54', borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true, maintainAspectRatio: false,
+                            plugins: { legend: { display: false }, tooltip: { callbacks: { title: ctx => ctx[0].label, label: ctx => `Jumlah Engang: ${ctx.raw}` } } },
+                            scales: { y: { beginAtZero: true, title: { display: true, text: 'Jumlah Engang (Suku Kata)' } }, x: { title: { display: true, text: 'Padalisan (Baris)' } } }
+                        }
+                    });
+                }
+
+                pupuhSelector.addEventListener('change', (e) => updatePupuhInfo(e.target.value));
+                populateSelector();
+                updatePupuhInfo(pupuhData[0].name);
+            }
 
             const navLinks = document.querySelectorAll('.nav-link');
             const contentSections = document.querySelectorAll('.content-section');
 
             function switchSection(sectionId) {
-                contentSections.forEach(section => {
-                    if (section.id === sectionId) {
-                        section.classList.add('active');
-                    } else {
-                        section.classList.remove('active');
-                    }
-                });
-                 navLinks.forEach(link => {
-                    if (link.dataset.section === sectionId) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
+                contentSections.forEach(section => section.classList.toggle('active', section.id === sectionId));
+                navLinks.forEach(link => link.classList.toggle('active', link.dataset.section === sectionId));
             }
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
                     const sectionId = e.target.dataset.section;
-                    switchSection(sectionId);
-                    history.pushState(null, '', `#${sectionId}`);
+                    const targetElement = document.getElementById(sectionId);
+                    if (targetElement) {
+                        switchSection(sectionId);
+                        history.pushState(null, '', `#${sectionId}`);
+                    }
                 });
             });
 
             const initialSection = window.location.hash.substring(1) || 'home';
             switchSection(initialSection);
-            
+
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.dataset.target;
-
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('active-tab', 'border-[#A98A71]', 'text-[#A98A71]');
-                        btn.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
-                    });
-
-                    button.classList.add('active-tab', 'border-[#A98A71]', 'text-[#A98A71]');
-                    button.classList.remove('border-transparent', 'text-gray-500');
-
-                    tabContents.forEach(content => {
-                        if (content.id === targetId) {
-                            content.classList.add('active-content');
-                            content.classList.remove('hidden');
-                        } else {
-                            content.classList.remove('active-content');
-                            content.classList.add('hidden');
-                        }
+            if (tabButtons.length > 0) {
+                 tabButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const targetId = button.dataset.target;
+                        tabButtons.forEach(btn => {
+                            btn.classList.remove('active-tab', 'border-[#A98A71]', 'text-[#A98A71]');
+                            btn.classList.add('border-transparent', 'text-gray-500', 'hover:text-gray-700', 'hover:border-gray-300');
+                        });
+                        button.classList.add('active-tab', 'border-[#A98A71]', 'text-[#A98A71]');
+                        button.classList.remove('border-transparent', 'text-gray-500');
+                        tabContents.forEach(content => content.style.display = content.id === targetId ? 'block' : 'none');
                     });
                 });
-            });
-            document.querySelector('.tab-content:not(.active-content)').classList.add('hidden');
-
+                // Initialize tabs
+                document.querySelectorAll('.tab-content:not(.active-content)').forEach(c => c.style.display = 'none');
+            }
+            
             const factOpinionData = [
                 { statement: "Popotongan awak kapanggih di Kalurahan Merdikorejo, Tempel, Sleman.", type: "Fakta", reason: "Ieu mangrupa kajadian anu bisa diverifikasi lokasi jeung waktuna." },
                 { statement: "Pamanggihan ieu dikonfirmasi ku Lurah Merdikorejo, Agus Prasetyo.", type: "Fakta", reason: "Ieu mangrupa pernyataan ti sumber anu jelas jeung bisa diparios." },
@@ -457,27 +388,22 @@
             ];
 
             const factOpinionContainer = document.getElementById('fact-opinion-container');
-            factOpinionData.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'p-4 border rounded-lg bg-gray-50';
-                div.innerHTML = `
-                    <p class="mb-3">"${item.statement}"</p>
-                    <div class="flex items-center gap-3">
-                        <button class="fact-btn bg-[#A98A71] text-white px-3 py-1 rounded-md hover:bg-[#8E6F54]">Fakta</button>
-                        <button class="opinion-btn bg-gray-500 text-white px-3 py-1 rounded-md hover:bg-gray-600">Opini</button>
-                        <p id="result-${index}" class="result-text text-sm font-semibold hidden"></p>
-                    </div>
-                `;
-                factOpinionContainer.appendChild(div);
-
-                div.querySelector('.fact-btn').addEventListener('click', () => checkAnswer(index, 'Fakta'));
-                div.querySelector('.opinion-btn').addEventListener('click', () => checkAnswer(index, 'Opini'));
-            });
+            if (factOpinionContainer) {
+                factOpinionData.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'p-4 border rounded-lg bg-gray-50';
+                    div.innerHTML = `<p class="mb-3">"${item.statement}"</p><div class="flex items-center gap-3"><button class="fact-btn bg-[#A98A71] text-white px-3 py-1 rounded-md hover:bg-[#8E6F54]">Fakta</button><button class="opinion-btn bg-gray-500 text-white px-3 py-1 rounded-md hover:bg-gray-600">Opini</button><p id="result-${index}" class="result-text text-sm font-semibold" style="display:none;"></p></div>`;
+                    factOpinionContainer.appendChild(div);
+                    div.querySelector('.fact-btn').addEventListener('click', () => checkAnswer(index, 'Fakta'));
+                    div.querySelector('.opinion-btn').addEventListener('click', () => checkAnswer(index, 'Opini'));
+                });
+            }
 
             function checkAnswer(index, answer) {
                 const item = factOpinionData[index];
                 const resultText = document.getElementById(`result-${index}`);
-                resultText.classList.remove('hidden', 'text-green-600', 'text-red-600');
+                resultText.style.display = 'block';
+                resultText.classList.remove('text-green-600', 'text-red-600');
                 if (item.type === answer) {
                     resultText.textContent = `Leres! Ieu téh ${item.type}. Alesan: ${item.reason}`;
                     resultText.classList.add('text-green-600');
